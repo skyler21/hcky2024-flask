@@ -1,0 +1,33 @@
+name: Docker Image CI
+
+on:
+  #push:
+  #  branches: [ "main" ]
+  #pull_request:
+  #  branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      APP_VER:
+        description: "Input from the user for the Image Version"
+        required: true
+    secrets:
+      DOCKER_USER: 
+        required: true
+      DOCKER_PASS: 
+        required: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout from default branch 
+        uses: actions/checkout@v4
+          
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
+      
+      - name: Build Container image
+        run: docker build -t ${{ secrets.DOCKER_REPO }}:latest .
+      
+      - name: Publish Docker image
+        run: docker push ${{ secrets.DOCKER_REPO }}
+    

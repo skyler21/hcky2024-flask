@@ -1,0 +1,10 @@
+image:
+  repository: skyler21/hcky2024flask
+  tag: "latest"
+replicaCount: 1
+service:
+  type: ClusterIP
+  port: 8080
+ingress:
+  enabled: true
+  host: hockeyflask

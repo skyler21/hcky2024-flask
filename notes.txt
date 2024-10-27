@@ -1,0 +1,28 @@
+
+activate the environment first after changing to the project directory  
+   . .venv/bin/activate
+       
+
+to run Flask app 
+    flask --app helloworld run 
+   OR 
+    python -m flask --app helloworld run
+
+
+url for app http://localhost:5000/
+
+
+
+debut mode 
+    flask --app helloworld run --debug
+
+
+flask --app flaskr run --debug
+
+
+flask --app flaskr init-db
+
+
+
+
+
