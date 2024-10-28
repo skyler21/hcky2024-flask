@@ -3,6 +3,8 @@ import socket
 import sys
 import os
 import logging
+import http.client
+import urllib3
 
 
 logging.basicConfig(stream=sys.stdout, 
@@ -10,8 +12,13 @@ logging.basicConfig(stream=sys.stdout,
     datefmt='%Y-%m-%d %H:%M:%S',
     level=logging.DEBUG)
 
-self.urlPort = config.HOCKEY2024APP_HOCKEY_SERVICE_PORT
-logging.info(f"Service URL and Port: {self.urlPort}")
+serviceName = os.environ["HOCKEY2024APP_HOCKEY_SERVICE_SERVICE_HOST"]
+servicePort = os.environ["HOCKEY2024APP_HOCKEY_SERVICE_SERVICE_PORT"]
+
+logging.info(f"Service URL and Port: {serviceName}:{servicePort}")
+
+https = urllib3.PoolManager()
+
 
 app = Flask(__name__)
 
@@ -28,9 +35,9 @@ def index():
 @app.route("/getTeams")
 def getTeams():
   
-  url = f"http://{self.urlPort}/db/get/teams"
+  url = f"https://{serviceName}:{servicePort}/db/get/teams"
 
-  resp = http.request('GET', url)
+  resp = https.request('GET', url)
   print(resp.status)
   print(resp.json())
 
