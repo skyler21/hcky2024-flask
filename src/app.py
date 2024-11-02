@@ -1,10 +1,10 @@
 from flask import Flask,render_template
-import socket
 import sys
 import os
 import logging
 import http.client
 import urllib3
+import json
 
 
 logging.basicConfig(stream=sys.stdout, 
@@ -12,8 +12,10 @@ logging.basicConfig(stream=sys.stdout,
     datefmt='%Y-%m-%d %H:%M:%S',
     level=logging.DEBUG)
 
-serviceName = os.environ["HOCKEY2024APP_HOCKEY_SERVICE_SERVICE_HOST"]
-servicePort = os.environ["HOCKEY2024APP_HOCKEY_SERVICE_SERVICE_PORT"]
+# serviceName = os.environ["HOCKEY2024APP_HOCKEY_SERVICE_SERVICE_HOST"]
+# servicePort = os.environ["HOCKEY2024APP_HOCKEY_SERVICE_SERVICE_PORT"]
+serviceName = 'localhost'
+servicePort = 8085
 
 logging.info(f"Service URL and Port: {serviceName}:{servicePort}")
 
@@ -22,26 +24,17 @@ https = urllib3.PoolManager()
 
 app = Flask(__name__)
 
-@app.route("/")
-def index():
-    try:
-        host_name = socket.gethostname()
-        host_ip = socket.gethostbyname(host_name)
-        return render_template('index.html', hostname=host_name, ip=host_ip)
-    except:
-        return render_template('error.html')
-
-
 @app.route("/getTeams")
 def getTeams():
   
-  url = f"https://{serviceName}:{servicePort}/db/get/teams"
+  url = f"http://{serviceName}:{servicePort}/db/get/teams"
 
   resp = https.request('GET', url)
-  print(resp.status)
-  print(resp.json())
-
-  json_html = resp.json()
+  print("Response Status = " + str(resp.status))
+  print("Response DATA = " + str(resp.data))
+  print("Response headers = " + str(resp.headers))
+  
+  json_html = json.loads(resp.data)
 
   print(json_html)
 
