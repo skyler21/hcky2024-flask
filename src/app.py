@@ -24,7 +24,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-  return render_template("template/index.html")
+  return render_template("index.html")
     
 @app.route("/getTeams")
 def getTeams():
@@ -42,7 +42,7 @@ def getTeams():
 
   # returning index.html and list 
   # and length of list to html page 
-  return render_template("templates/teams.html", len = len(json_html), json_html = json_html) 
+  return render_template("teams.html", len = len(json_html), json_html = json_html) 
    
   app.run(use_reloader = True, debug = True) 
 
