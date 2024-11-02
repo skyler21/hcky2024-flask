@@ -8,11 +8,14 @@ ENV PYTHONUNBUFFERED 1
 # Create and set the working directory
 WORKDIR /app
 
+# ensure pip is installed  
+python3 -m ensurepip --upgrade
+
 # Copy only the requirements file first to leverage Docker caching
 COPY requirements.txt .
 
 # Install dependencies
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire application code
 COPY . .
