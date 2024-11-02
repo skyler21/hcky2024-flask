@@ -9,7 +9,7 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 
 # ensure pip is installed  
-python3 -m ensurepip --upgrade
+RUN python3 -m ensurepip --upgrade
 
 # Copy only the requirements file first to leverage Docker caching
 COPY requirements.txt .
