@@ -1,4 +1,5 @@
-FROM python:3.12-alpine
+#FROM python:3.12-alpine
+FROM redhat/ubi9:latest
 
 # Set up environment variables for Python
 ENV PYTHONDONTWRITEBYTECODE 1
