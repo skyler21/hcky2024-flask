@@ -27,9 +27,9 @@
 <body> 
     <h2 align="center" >Hockey Dashboard</h2>
     <form>
-        <p align="center"><a href=getTeams ><input type="submit"> <button class=grey style="height:75px;width:150px">Get Teams</button></a></p>
-        <p align="center"><a href=getFranchises ><input type="submit"><button class=grey style="height:75px;width:150px">Get Franchises</button></a></p>
-        <p align="center"><a href=getGames ><input type="submit"><button class=grey style="height:75px;width:150px">Get Games</button></a></p>
+        <p align="center"><a href="{{url_for(app.getTeams)}}"><button class=grey style="height:75px;width:150px">Get Teams</button></a></p>
+        <p align="center"><a href=getFranchises ><button class=grey style="height:75px;width:150px">Get Franchises</button></a></p>
+        <p align="center"><a href=getGames ><button class=grey style="height:75px;width:150px">Get Games</button></a></p>
         <--! p align="center"><input type="date" format="yyyy/mm/dd" name="dateVal">Input a Date</p> -->
     </form>
 </body>
