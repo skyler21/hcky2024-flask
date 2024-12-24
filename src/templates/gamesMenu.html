@@ -1,0 +1,51 @@
+<!DOCTYPE html> 
+  
+<html> 
+<head> 
+    <title> Dashboard </title> 
+</head> 
+  
+<!-- Adding some style to table (OPTIONAL) -->
+<style type="text/css"> 
+      
+    th:tr{ 
+        color: blue; 
+  
+    } 
+    tr:nth-of-type(2n){ 
+        border: 1px solid black; 
+        background-color: rgba(150, 150, 150, 0.5); 
+  
+    } 
+  
+    td{ 
+        padding: 8px 8px; 
+        border: 1px solid black; 
+    } 
+</style> 
+  
+<body> 
+    <h2 align="center" >GAMES Data Dashboard</h2>
+    <form action="{{ url_for('findGames') }}">
+        <p align="center"><a href="{{ url_for('getTeams') }}">Get Teams</button></a></p>
+        <p align="center"><a href="{{ url_for('getGames') }}">Get Games</button></a></p>
+        <p align="center"><select name=gameSeason method="GET" action="/">
+            {% for gameSeason in gameSeasons %}
+            <option value= "{{gameSeason}}" SELECTED>{{gameSeason}}</option>"
+            {% endfor %}
+        </select></p>
+        <p align="center"><select name=gameType method="GET" action="/">
+            {% for gameType in gameTypes %}
+            <option value= "{{gameType}}" SELECTED>{{gameType}}</option>"
+            {% endfor %}
+        </select></p>
+        <p align="center"><select name=gameTeam method="GET" action="/">
+            {% for gameTeam in gameTeams %}
+            <option value= "{{gameTeam}}" SELECTED>{{gameTeam}}</option>"
+            {% endfor %}
+        </select></p>
+        <p align="center"><input type="date" id="gameDate" name="gameDate"></p>
+        <p align="center"><button type="submit">Submit</button></p>
+    </form>
+</body>
+</html>
