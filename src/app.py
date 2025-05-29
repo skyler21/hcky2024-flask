@@ -123,7 +123,42 @@ def getGamesMenu():
   
   app.run(use_reloader = True, debug = True) 
 
-    
+@app.route("/getStandings")
+def getStandings():
+  
+  url = f"http://{serviceName}:{servicePort}/db/get/standings"
+
+  resp = https.request('GET', url)
+  print("Response Status = " + str(resp.status))
+  print("Response DATA = " + str(resp.data))
+  print("Response headers = " + str(resp.headers))
+  
+  json_html = json.loads(resp.data)
+
+  print(json_html)
+
+  # returning index.html and list 
+  # and length of list to html page 
+  return render_template("standings.html", len = len(json_html), json_html = json_html) 
+
+@app.route("/getWinPercent")
+def getWinPercent():
+  
+  url = f"http://{serviceName}:{servicePort}/db/get/winPercent"
+
+  resp = https.request('GET', url)
+  print("Response Status = " + str(resp.status))
+  print("Response DATA = " + str(resp.data))
+  print("Response headers = " + str(resp.headers))
+  
+  json_html = json.loads(resp.data)
+
+  print(json_html)
+
+  # returning index.html and list 
+  # and length of list to html page 
+  return render_template("standings.html", len = len(json_html), json_html = json_html) 
+        
 @app.route("/getTeamsMenu")
 def getTeamsMenu():
   
@@ -133,5 +168,81 @@ def getTeamsMenu():
   
   app.run(use_reloader = True, debug = True) 
 
+@app.route("/getStandingsMenu")
+def getStandingsMenu():
+  
+  # returning index.html and list 
+  # and length of list to html page 
+  return render_template("standingsMenu.html") 
+  
+
+@app.route("/getRostersMenu")
+def getRostersMenu():
+  
+  # returning index.html and list 
+  # and length of list to html page 
+  return render_template("rostersMenu.html") 
+
+@app.route("/getLoadUpdatesMenu")
+def getLoadUpdatesMenu():
+  
+  # returning index.html and list 
+  # and length of list to html page 
+  return render_template("loadUpdatesMenu.html") 
+
+@app.route("/getGoalies")
+def getGoalies():
+  
+  url = f"http://{serviceName}:{servicePort}/db/get/goalieRoster"
+
+  resp = https.request('GET', url)
+  print("Response Status = " + str(resp.status))
+  print("Response DATA = " + str(resp.data))
+  print("Response headers = " + str(resp.headers))
+  
+  json_html = json.loads(resp.data)
+
+  print(json_html)
+
+  # returning index.html and list 
+  # and length of list to html page 
+  return render_template("goaliesRoster.html", len = len(json_html), json_html = json_html) 
+
+@app.route("/getForwards")
+def getForwards():
+  
+  url = f"http://{serviceName}:{servicePort}/db/get/forwardRoster"
+
+  resp = https.request('GET', url)
+  print("Response Status = " + str(resp.status))
+  print("Response DATA = " + str(resp.data))
+  print("Response headers = " + str(resp.headers))
+  
+  json_html = json.loads(resp.data)
+
+  print(json_html)
+
+  # returning index.html and list 
+  # and length of list to html page 
+  return render_template("forwardsRoster.html", len = len(json_html), json_html = json_html) 
+
+@app.route("/getDefense")
+def getDefense():
+  
+  url = f"http://{serviceName}:{servicePort}/db/get/defenseRoster"
+
+  resp = https.request('GET', url)
+  print("Response Status = " + str(resp.status))
+  print("Response DATA = " + str(resp.data))
+  print("Response headers = " + str(resp.headers))
+  
+  json_html = json.loads(resp.data)
+
+  print(json_html)
+
+  # returning index.html and list 
+  # and length of list to html page 
+  return render_template("defenseRoster.html", len = len(json_html), json_html = json_html) 
+      
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)

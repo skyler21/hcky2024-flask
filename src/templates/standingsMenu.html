@@ -1,0 +1,35 @@
+<!DOCTYPE html> 
+  
+<html> 
+<head> 
+    <title> Dashboard </title> 
+</head> 
+  
+<!-- Adding some style to table (OPTIONAL) -->
+<style type="text/css"> 
+      
+    th:tr{ 
+        color: blue; 
+  
+    } 
+    tr:nth-of-type(2n){ 
+        border: 1px solid black; 
+        background-color: rgba(150, 150, 150, 0.5); 
+  
+    } 
+  
+    td{ 
+        padding: 8px 8px; 
+        border: 1px solid black; 
+    } 
+</style> 
+  
+<body> 
+    <h2 align="center" >Standings Data Dashboard</h2>
+    <form>
+        <p align="center"><a href="{{ url_for('getStandings') }}">Get Standings by Conference</button></a></p>
+        <p align="center"><a href="{{ url_for('getWinPercent') }}">Get Standings by Win Percentage</button></a></p>
+        
+    </form>
+</body>
+</html>

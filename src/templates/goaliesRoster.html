@@ -1,0 +1,67 @@
+<!DOCTYPE html> 
+  
+<html> 
+<head> 
+    <title>Games List</title> 
+</head> 
+  
+<!-- Adding some style to table (OPTIONAL) -->
+<style type="text/css"> 
+      
+    th:tr{ 
+        color: blue; 
+  
+    } 
+    tr:nth-of-type(2n){ 
+        border: 1px solid black; 
+        background-color: rgba(150, 150, 150, 0.5); 
+  
+    } 
+  
+    td{ 
+        padding: 8px 8px; 
+        border: 1px solid black; 
+    } 
+</style> 
+  
+<body> 
+
+<table style="margin-left: 20px;"> 
+<!-- Table headers -->
+    <th> 
+        <tr style="color: green; ">     
+        <td>Goals Against Avg</td> 
+        <td>Games Played</td>
+        <td>Wins</td>
+        <td>Losses</td>
+        <td>OT Losses</td>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Team</td> 
+      
+</tr> 
+    </th> 
+      
+<!-- For loop logic of jinja template -->
+{%for i in range(0, len)%} 
+  
+<!-- table rows -->
+<tr> 
+    <td>{{json_html[i].goalsAgainstAvg}}</td> 
+    <td>{{json_html[i].gamesPlayed}}</td>
+    <td>{{json_html[i].gameWins}}</td>
+    <td>{{json_html[i].gameLosses}}</td> 
+    <td>{{json_html[i].gameOtLosses}}</td> 
+    <td>{{json_html[i].firstName}}</td>
+    <td>{{json_html[i].lastName}}</td> 
+    <td>{{json_html[i].teamAbbr}}</td> 
+  
+{%endfor%} 
+  
+</tr> 
+  
+</table> 
+  
+  
+</body> 
+</html> 

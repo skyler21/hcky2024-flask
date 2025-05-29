@@ -2,7 +2,7 @@
   
 <html> 
 <head> 
-    <title>For loop in Flask</title> 
+    <title>Games List</title> 
 </head> 
   
 <!-- Adding some style to table (OPTIONAL) -->
@@ -34,10 +34,15 @@
         <td>StartTime</td>
         <td>Date</td>
         <td>GameNumber</td>
-        <td>HomeTeam</td>
-        <td>Score</td>
         <td>Visitor Team</td> 
         <td>Score</td>
+        <td>Sog</td>
+        <td>HomeTeam</td>
+        <td>Score</td>
+        <td>Sog</td>
+        
+        <td>Gm Status</td>
+
 </tr> 
     </th> 
       
@@ -50,10 +55,13 @@
     <td>{{json_html[i].easternStartTime}}</td>
     <td>{{json_html[i].gameDate}}</td>
     <td>{{json_html[i].gameNumber}}</td> 
-    <td>{{json_html[i].homeTeamFullName}}</td> 
-    <td>{{json_html[i].homeScore}}</td> 
     <td>{{json_html[i].visitingTeamFullName}}</td> 
-    <td>{{json_html[i].visitingScore}}</td> 
+    <td>{{json_html[i].visitingScore}}</td>
+    <td>{{json_html[i].visitingSog}}</td>
+    <td>{{json_html[i].homeTeamFullName}}</td> 
+    <td>{{json_html[i].homeScore}}</td>
+    <td>{{json_html[i].homeSog}}</td> 
+    <td>{{json_html[i].lastPeriodType}}</td> 
   
 {%endfor%} 
   
