@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> {{ teamName }} Team Roster</title> 
+</head>
+  <!-- Adding some style to table (OPTIONAL) -->
+<style type="text/css"> 
+      
+    th:tr{ 
+        color: blue; 
+  
+    } 
+    tr:nth-of-type(2n){ 
+        border: 1px solid black; 
+        background-color: rgba(150, 150, 150, 0.5); 
+  
+    } 
+  
+    td{ 
+        padding: 8px 8px; 
+        border: 1px solid black; 
+    } 
+</style> 
+  
+<body> 
+<h1>{{ teamName }} Team Roster</h1>
+<!-- Table 1: Goalie Info -->
+<h2>Goalie Info</h2>
+<table style="margin-left: 20px;"> 
+<!-- Table headers -->
+    <th> 
+        <tr style="color: green; ">     
+        <td>Goals Against Avg</td> 
+        <td>Games Played</td>
+        <td>Wins</td>
+        <td>Losses</td>
+        <td>OT Losses</td>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Team</td> 
+        <td>Is Active</td> 
+      
+</tr> 
+    </th> 
+      
+<!-- For loop logic of jinja template -->
+{%for i in range(0, goalies_len)%} 
+
+<!-- table rows -->
+<tr> 
+    <td>{{goalies[i].goalsAgainstAvg}}</td> 
+    <td>{{goalies[i].gamesPlayed}}</td>
+    <td>{{goalies[i].gameWins}}</td>
+    <td>{{goalies[i].gameLosses}}</td> 
+    <td>{{goalies[i].gameOtLosses}}</td> 
+    <td>{{goalies[i].firstName}}</td>
+    <td>{{goalies[i].lastName}}</td> 
+    <td>{{goalies[i].teamAbbr}}</td> 
+    <td>{{goalies[i].isActive}}</td>
+
+{%endfor%} 
+  
+</tr> 
+</table>   
+
+<!-- Table 2: Forward Info -->
+<h2>Defense Info</h2>
+  
+    <table style="margin-left: 20px;"> 
+<!-- Table headers -->
+    <th> 
+        <tr style="color: green; ">     
+        <td>Points</td> 
+        <td>Goals</td>
+        <td>Assists</td>
+        <td>OT Goals</td>
+        <td>Plus Minus</td>
+        <td>Shots</td>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Team</td>
+        <td>Is Active</td>
+
+</tr> 
+    </th> 
+      
+<!-- For loop logic of jinja template -->
+{%for i in range(0, defenses_len)%} 
+
+<!-- table rows -->
+<tr> 
+    <td>{{defenses[i].gamePoints}}</td> 
+    <td>{{defenses[i].gameGoals}}</td>
+    <td>{{defenses[i].gamesAssists}}</td>
+    <td>{{defenses[i].gameOtGoals}}</td>
+    <td>{{defenses[i].gamePlusMinus}}</td> 
+    <td>{{defenses[i].gameShots}}</td> 
+    <td>{{defenses[i].firstName}}</td>
+    <td>{{defenses[i].lastName}}</td> 
+    <td>{{defenses[i].teamAbbr}}</td> 
+    <td>{{defenses[i].isActive}}</td>
+
+{%endfor%} 
+  
+</tr> 
+  
+</table> 
+  
+<!-- Table 3: Forward Info -->
+<h2>Forward Info</h2>
+<table style="margin-left: 20px;"> 
+<!-- Table headers -->
+    <th> 
+        <tr style="color: green; ">     
+        <td>Points</td> 
+        <td>Goals</td>
+        <td>Assists</td>
+        <td>OT Goals</td>
+        <td>Plus Minus</td>
+        <td>Shots</td>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Team</td>
+        <td>Is Active</td>
+
+</tr> 
+    </th> 
+      
+<!-- For loop logic of jinja template -->
+{%for i in range(0, forwards_len)%} 
+  
+<!-- table rows -->
+<tr> 
+    <td>{{forwards[i].gamePoints}}</td> 
+    <td>{{forwards[i].gameGoals}}</td>
+    <td>{{forwards[i].gamesAssists}}</td>
+    <td>{{forwards[i].gameOtGoals}}</td>
+    <td>{{forwards[i].gamePlusMinus}}</td> 
+    <td>{{forwards[i].gameShots}}</td> 
+    <td>{{forwards[i].firstName}}</td>
+    <td>{{forwards[i].lastName}}</td> 
+    <td>{{forwards[i].teamAbbr}}</td>
+    <td>{{forwards[i].isActive}}</td>
+
+{%endfor%} 
+  
+</tr> 
+  
+</table> 
+</body>
+</html>

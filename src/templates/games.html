@@ -30,7 +30,8 @@
 <!-- Table headers -->
     <th> 
         <tr style="color: green; ">     
-        <td>GameId</td> 
+        <td>GameId</td>
+        <td>GameTypeDesc</td> 
         <td>StartTime</td>
         <td>Date</td>
         <td>GameNumber</td>
@@ -52,13 +53,20 @@
 <!-- table rows -->
 <tr> 
     <td>{{json_html[i].gameId}}</td> 
+    <td>{{json_html[i].gameTypeDesc}}</td> 
     <td>{{json_html[i].easternStartTime}}</td>
     <td>{{json_html[i].gameDate}}</td>
     <td>{{json_html[i].gameNumber}}</td> 
-    <td>{{json_html[i].visitingTeamFullName}}</td> 
+    <td onclick="teamClicked('{{json_html[i].visitingTeamId}}', '{{json_html[i].visitingTeamFullName}}')"
+        style="cursor:pointer; color:blue;">
+        {{json_html[i].visitingTeamFullName}}
+    </td> 
     <td>{{json_html[i].visitingScore}}</td>
     <td>{{json_html[i].visitingSog}}</td>
-    <td>{{json_html[i].homeTeamFullName}}</td> 
+    <td onclick="teamClicked('{{json_html[i].homeTeamId}}', '{{json_html[i].homeTeamFullName}}')"
+        style="cursor:pointer; color:blue;">
+        {{json_html[i].homeTeamFullName}}
+    </td> 
     <td>{{json_html[i].homeScore}}</td>
     <td>{{json_html[i].homeSog}}</td> 
     <td>{{json_html[i].lastPeriodType}}</td> 
@@ -71,4 +79,9 @@
   
   
 </body> 
-</html> 
+<script>
+function teamClicked(teamId, teamName) {
+    window.open("/getTeamRoster/" + teamId, "_blank", "noopener,noreferrer");
+}
+</script>
+</html>

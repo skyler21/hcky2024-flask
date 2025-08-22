@@ -6,7 +6,7 @@ from flask import request
 import http.client
 import urllib3
 import json
-import jsonify
+#import jsonify
 
 
 logging.basicConfig(stream=sys.stdout, 
@@ -243,6 +243,49 @@ def getDefense():
   # returning index.html and list 
   # and length of list to html page 
   return render_template("defenseRoster.html", len = len(json_html), json_html = json_html) 
-      
+
+@app.route('/getTeamRoster/<team_id>')
+def getTeamRoster(team_id):
+   # Get Team Name
+  url = f"http://{serviceName}:{servicePort}/db/get/teamName/team={team_id}"
+
+  resp = https.request('GET', url)
+  print("Response Status = " + str(resp.status))
+  print("Response DATA = " + str(resp.data))
+  print("Response headers = " + str(resp.headers))
+  teamName = resp.data.decode('utf-8')
+
+ # Get Goalie details
+  url = f"http://{serviceName}:{servicePort}/db/get/teamGoalieRoster/team={team_id}"
+
+  resp = https.request('GET', url)
+  print("Response Status = " + str(resp.status))
+  print("Response DATA = " + str(resp.data))
+  print("Response headers = " + str(resp.headers))
+  
+  goalies_html = json.loads(resp.data)
+
+  # Get Defense details
+  url = f"http://{serviceName}:{servicePort}/db/get/teamDefenseRoster/team={team_id}"
+
+  resp = https.request('GET', url)
+  print("Response Status = " + str(resp.status))
+  print("Response DATA = " + str(resp.data))
+  print("Response headers = " + str(resp.headers))
+  
+  defenses_html = json.loads(resp.data)
+  
+  # Get Forward details
+  url = f"http://{serviceName}:{servicePort}/db/get/teamForwardRoster/team={team_id}"
+
+  resp = https.request('GET', url)
+  print("Response Status = " + str(resp.status))
+  print("Response DATA = " + str(resp.data))
+  print("Response headers = " + str(resp.headers))
+  forwards_html = json.loads(resp.data)
+  
+  # Implement this function
+  return render_template('teamRoster.html', teamName=teamName, goalies_len=len(goalies_html),goalies=goalies_html, defenses_len=len(defenses_html), defenses=defenses_html, forwards_len=len(forwards_html), forwards=forwards_html)
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
