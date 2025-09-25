@@ -26,11 +26,38 @@
   
 <body> 
     <h2 align="center" >Load Updates Data Dashboard</h2>
-    <form action="{{ url_for('findGames') }}">
-        <p align="center"><a href="{{ url_for('getTeams') }}">Get Teams</button></a></p>
-        <p align="center"><a href="{{ url_for('getGames') }}">Get Games</button></a></p>
-        <p align="center"><input type="date" id="gameDate" name="gameDate"></p>
-        <p align="center"><button type="submit">Submit</button></p>
-    </form>
+    
+    <!-- Separate forms for each action -->
+    <div align="center">
+        <form action="{{ url_for('loadAllTeams') }}" method="GET">
+            <button type="submit">Load All Teams</button>
+        </form>
+        
+        <form action="{{ url_for('loadAllGames') }}" method="GET">
+            <button type="submit">Load All Games</button>
+        </form>
+        
+        <form action="{{ url_for('updateDayRosters') }}" method="POST">
+            <input type="date" 
+                   id="gameDate" 
+                   name="gameDate" 
+                   required 
+                   pattern="\d{4}-\d{2}-\d{2}"
+                   title="Enter date in YYYY-MM-DD format">
+            <button type="submit">Update Day Rosters</button>
+        </form>
+        
+        <form action="{{ url_for('updateDayGames') }}" method="POST">
+            <input type="date" 
+                   id="gameDate" 
+                   name="gameDate" 
+                   required 
+                   pattern="\d{4}-\d{2}-\d{2}"
+                   title="Enter date in YYYY-MM-DD format">
+            <button type="submit">Update Day Games</button>
+        </form>
+
+        <p style="color:green;">{{ message }}</p>
+    </div>
 </body>
 </html>

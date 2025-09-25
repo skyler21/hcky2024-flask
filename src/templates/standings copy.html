@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>For loop in Flask</title>
+</head>
+
+<!-- Adding some style to table (OPTIONAL) -->
+<style type="text/css">
+    th:tr {
+        color: blue;
+
+    }
+
+    tr:nth-of-type(2n) {
+        border: 1px solid black;
+        background-color: rgba(150, 150, 150, 0.5);
+
+    }
+
+    td {
+        padding: 8px 8px;
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+
+    <table style="margin-left: 20px;">
+        <!-- Table headers -->
+        <th>
+            <tr style="color: green; ">
+                <td>Conference<br />Name</td>
+                <td>Division<br />Name</td>
+                <td>Team<br />Name</td>
+                <td>Games<br />Played</td>
+                <td>Points</td>
+                <td>Win<br />Percentage</td>
+                <td>Wins</td>
+                <td>Losses</td>
+                <td>OT<br />Losses</td>
+                <td>Shootout<br />Wins</td>
+                <td>Shootout<br />Losses</td>
+                <td>Goals<br />For</td>
+                <td>Goal<br />Against</td>
+                <td>Home Gms<br />Played</td>
+                <td>Home<br />Points</td>
+                <td>Home<br />Wins</td>
+                <td>Home<br />Losses</td>
+                <td>Home OT<br />Losses</td>
+                <td>Road Gms<br />Played</td>
+                <td>Road<br />Points</td>
+                <td>Road<br />Wins</td>
+                <td>Road<br />Losses</td>
+                <td>Road OT<br />Losses</td>
+            </tr>
+        </th>
+
+        <!-- For loop logic of jinja template -->
+        {%for i in range(0, len)%}
+      
+        <!-- table rows -->
+        <tr>
+            <td>{{json_html[i].conferenceName}}</td>
+            <td>{{json_html[i].divisionName}}</td>
+            <td>{{json_html[i].teamName}}</td>
+            <td>{{json_html[i].gamesPlayed}}</td>
+            <td>{{json_html[i].points}}</td>
+            <td>{{json_html[i].winPctg}}</td>
+            <td>{{json_html[i].wins}}</td>
+            <td>{{json_html[i].losses}}</td>
+            <td>{{json_html[i].otLosses}}</td>
+            <td>{{json_html[i].shootoutWins}}</td>
+            <td>{{json_html[i].shootoutLosses}}</td>
+            <td>{{json_html[i].goalFor}}</td>
+            <td>{{json_html[i].goalAgainst}}</td>
+            <td>{{json_html[i].homeGamesPlayed}}</td>
+            <td>{{json_html[i].homePoints}}</td>
+            <td>{{json_html[i].homeWins}}</td>
+            <td>{{json_html[i].homeLosses}}</td>
+            <td>{{json_html[i].homeOtLosses}}</td>
+            <td>{{json_html[i].roadGamesPlayed}}</td>
+            <td>{{json_html[i].roadPoints}}</td>
+            <td>{{json_html[i].roadWins}}</td>
+            <td>{{json_html[i].roadLosses}}</td>
+            <td>{{json_html[i].roadOtLosses}}</td>
+            
+            {%endfor%}
+
+        </tr>
+
+    </table>
+
+
+</body>
+
+</html>

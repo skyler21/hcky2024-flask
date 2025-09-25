@@ -1,3 +1,4 @@
+import flask
 from flask import Flask,render_template
 import sys
 import os
@@ -72,7 +73,7 @@ def findGames():
   gmType = request.args['gameType']
   gmTeam = request.args['gameTeam']
   gmDate = request.args['gameDate']
-  
+
   url = f"http://{serviceName}:{servicePort}/db/get/findGames?gameSeason={gmSeason}&gameType={gmType}&gameTeam={gmTeam}&gameDate={gmDate}"
 
   resp = https.request('GET', url)
@@ -255,6 +256,17 @@ def getTeamRoster(team_id):
   print("Response headers = " + str(resp.headers))
   teamName = resp.data.decode('utf-8')
 
+ # Get Standings details
+  url = f"http://{serviceName}:{servicePort}/db/get/teamStanding/team={teamName}"
+
+  resp = https.request('GET', url)
+  print("Response Status = " + str(resp.status))
+  print("Response DATA = " + str(resp.data))
+  print("Response headers = " + str(resp.headers))
+  
+  standings_html = json.loads(resp.data)
+
+
  # Get Goalie details
   url = f"http://{serviceName}:{servicePort}/db/get/teamGoalieRoster/team={team_id}"
 
@@ -285,7 +297,138 @@ def getTeamRoster(team_id):
   forwards_html = json.loads(resp.data)
   
   # Implement this function
-  return render_template('teamRoster.html', teamName=teamName, goalies_len=len(goalies_html),goalies=goalies_html, defenses_len=len(defenses_html), defenses=defenses_html, forwards_len=len(forwards_html), forwards=forwards_html)
+  return render_template('teamRoster.html', teamName=teamName, standings=standings_html, goalies_len=len(goalies_html),goalies=goalies_html, defenses_len=len(defenses_html), defenses=defenses_html, forwards_len=len(forwards_html), forwards=forwards_html)
 
+@app.route('/getDateRoster', methods=["GET","POST"])
+def getDateRoster():
+    gmDate = request.args['gameDate']
+
+    # Get Team List for Date
+    url = f"http://{serviceName}:{servicePort}/db/get/teamListByDate?gameDate={gmDate}"
+
+    resp = https.request('GET', url)
+    print("Response Status = " + str(resp.status))
+    print("Response DATA = " + str(resp.data))
+    print("Response headers = " + str(resp.headers))
+    
+    teamResp = json.loads(resp.data)
+    if not teamResp:
+        return "No teams found for this date"
+
+     # Convert list to comma-separated string for API call
+    teamList = ','.join(str(team) for team in teamResp)
+     
+    # Get Goalie details using the formatted team list
+    url = f"http://{serviceName}:{servicePort}/db/get/GoaliesByTeamList/teamList={teamList}"
+
+    resp = https.request('GET', url)
+    print("Response Status = " + str(resp.status))
+    print("Response DATA = " + str(resp.data))
+    print("Response headers = " + str(resp.headers))
+    
+    goalies_html = json.loads(resp.data)
+
+    # Get Defense details
+    url = f"http://{serviceName}:{servicePort}/db/get/DefenseByTeamList/teamList={teamList}"
+
+    resp = https.request('GET', url)
+    print("Response Status = " + str(resp.status))
+    print("Response DATA = " + str(resp.data))
+    print("Response headers = " + str(resp.headers))
+    
+    defenses_html = json.loads(resp.data)
+    
+    # Get Forward details
+    url = f"http://{serviceName}:{servicePort}/db/get/ForwardsByTeamList/teamList={teamList}"
+
+    resp = https.request('GET', url)
+    print("Response Status = " + str(resp.status))
+    print("Response DATA = " + str(resp.data))
+    print("Response headers = " + str(resp.headers))
+    forwards_html = json.loads(resp.data)
+    
+    # Implement this function
+    return render_template('dateRoster.html', gmDate=gmDate, goalies_len=len(goalies_html),goalies=goalies_html, defenses_len=len(defenses_html), defenses=defenses_html, forwards_len=len(forwards_html), forwards=forwards_html)
+
+@app.route("/loadAllTeams")
+def loadAllTeams():
+
+  url = f"http://{serviceName}:{servicePort}/api/load/teams"
+
+  resp = https.request('GET', url)
+  print("Response Status = " + str(resp.status))
+  print("Response DATA = " + str(resp.data))
+  print("Response headers = " + str(resp.headers))
+  
+  resp_message = resp.data.decode('utf-8')
+
+  print(resp_message)
+  ## display response message on curret html page
+  message = f"Loaded {resp_message} from API"
+  print(message)
+
+  # returning index.html and list
+  # and length of list to html page
+  return render_template("loadUpdatesMenu.html", message=message)
+
+@app.route("/loadAllGames")
+def loadAllGames():
+
+  url = f"http://{serviceName}:{servicePort}/api/load/games"
+
+  resp = https.request('GET', url)
+  print("Response Status = " + str(resp.status))
+  print("Response DATA = " + str(resp.data))
+  print("Response headers = " + str(resp.headers))
+  
+  resp_message = resp.data.decode('utf-8')
+
+  print(resp_message)
+  ## display response message on curret html page
+  message = f"Loaded {resp_message} from API"
+  print(message)
+
+  # returning index.html and list
+  # and length of list to html page
+  return render_template("loadUpdatesMenu.html", message=message)
+
+@app.route("/updateDayRosters", methods=["POST"])
+def updateDayRosters():
+    gmDate = request.form.get('gameDate')  # Changed from request.args to request.form
+    if not gmDate:
+        return render_template("loadUpdatesMenu.html", 
+                            message="Error: Date is required")
+
+    # load Roster for gmDate
+    url = f"http://{serviceName}:{servicePort}/api/load/roster/date={gmDate}"
+
+    resp = https.request('POST', url)
+    print("Response Status = " + str(resp.status))
+    print("Response DATA = " + str(resp.data))
+    
+    resp_message = resp.data.decode('utf-8')
+    message = f"Loaded {resp_message} from API"
+    
+    return render_template("loadUpdatesMenu.html", message=message)
+
+@app.route("/updateDayGames", methods=["POST"])
+def updateDayGames():
+    gmDate = request.form.get('gameDate')  # Changed from request.form[] to request.form.get()
+    if not gmDate:
+        return render_template("loadUpdatesMenu.html", 
+                            message="Error: Date is required")
+ 
+    # update Game for gmDate
+    url = f"http://{serviceName}:{servicePort}/api/update/game/updateDate={gmDate}"
+
+    resp = https.request('POST', url)
+    print("Response Status = " + str(resp.status))
+    print("Response DATA = " + str(resp.data))
+    
+    resp_message = resp.data.decode('utf-8')
+    message = f"Loaded {resp_message} from API"
+
+    return render_template("loadUpdatesMenu.html", message=message)
+ 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)

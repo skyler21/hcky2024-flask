@@ -26,11 +26,12 @@
   
 <body> 
     <h2 align="center" >Rosters Data Dashboard</h2>
-    <form>
+    <form action="{{ url_for('getDateRoster') }}">
         <p align="center"><a href="{{ url_for('getGoalies') }}">Get Goalies Roster</button></a></p>
         <p align="center"><a href="{{ url_for('getDefense') }}">Get Defense Roster</button></a></p>
         <p align="center"><a href="{{ url_for('getForwards') }}">Get Forwards Roster</button></a></p>
-        
+        <p align="center"><input type="date" id="gameDate" name="gameDate"></p>
+        <p align="center"><button type="submit">Submit</button></p>
     </form>
 </body>
 </html>
