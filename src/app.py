@@ -36,9 +36,9 @@ def getTeams():
   url = f"http://{serviceName}:{servicePort}/db/get/teams"
 
   resp = https.request('GET', url)
-  print("Response Status = " + str(resp.status))
-  print("Response DATA = " + str(resp.data))
-  print("Response headers = " + str(resp.headers))
+  #print("Response Status = " + str(resp.status))
+  #print("Response DATA = " + str(resp.data))
+  #print("Response headers = " + str(resp.headers))
   
   json_html = json.loads(resp.data)
 
@@ -54,13 +54,13 @@ def getGames():
   url = f"http://{serviceName}:{servicePort}/db/get/games"
 
   resp = https.request('GET', url)
-  print("Response Status = " + str(resp.status))
-  print("Response DATA = " + str(resp.data))
-  print("Response headers = " + str(resp.headers))
+  #print("Response Status = " + str(resp.status))
+  #print("Response DATA = " + str(resp.data))
+  #print("Response headers = " + str(resp.headers))
   
   json_html = json.loads(resp.data)
 
-  print(json_html)
+  #print(json_html)
 
   # returning index.html and list 
   # and length of list to html page 
@@ -77,13 +77,13 @@ def findGames():
   url = f"http://{serviceName}:{servicePort}/db/get/findGames?gameSeason={gmSeason}&gameType={gmType}&gameTeam={gmTeam}&gameDate={gmDate}"
 
   resp = https.request('GET', url)
-  print("Response Status = " + str(resp.status))
-  print("Response DATA = " + str(resp.data))
-  print("Response headers = " + str(resp.headers))
+  #print("Response Status = " + str(resp.status))
+  #print("Response DATA = " + str(resp.data))
+  #print("Response headers = " + str(resp.headers))
   
   json_html = json.loads(resp.data)
 
-  print(json_html)
+  #print(json_html)
 
   # returning index.html and list 
   # and length of list to html page 
@@ -108,7 +108,7 @@ def getGamesMenu():
   typesResp = https.request('GET', url)
   gameTypes = json.loads(typesResp.data)
 
-  print(gameTypes)
+  #print(gameTypes)
 
   # get list of game teams   
   url = f"http://{serviceName}:{servicePort}/db/get/allGameTeams"
@@ -117,7 +117,7 @@ def getGamesMenu():
   gameTeams = json.loads(teamsResp.data)
   gameTeams.append('NONE')
 
-  print(gameTeams)
+  #print(gameTeams)
   
   
   return render_template("gamesMenu.html", gameSeasons=gameSeasons, gameTypes=gameTypes, gameTeams=gameTeams) 
@@ -130,13 +130,13 @@ def getStandings():
   url = f"http://{serviceName}:{servicePort}/db/get/standings"
 
   resp = https.request('GET', url)
-  print("Response Status = " + str(resp.status))
-  print("Response DATA = " + str(resp.data))
-  print("Response headers = " + str(resp.headers))
+  #print("Response Status = " + str(resp.status))
+  #print("Response DATA = " + str(resp.data))
+  #print("Response headers = " + str(resp.headers))
   
   json_html = json.loads(resp.data)
 
-  print(json_html)
+  #print(json_html)
 
   # returning index.html and list 
   # and length of list to html page 
@@ -148,13 +148,13 @@ def getWinPercent():
   url = f"http://{serviceName}:{servicePort}/db/get/winPercent"
 
   resp = https.request('GET', url)
-  print("Response Status = " + str(resp.status))
-  print("Response DATA = " + str(resp.data))
-  print("Response headers = " + str(resp.headers))
+  #print("Response Status = " + str(resp.status))
+  #print("Response DATA = " + str(resp.data))
+  #print("Response headers = " + str(resp.headers))
   
   json_html = json.loads(resp.data)
 
-  print(json_html)
+  #print(json_html)
 
   # returning index.html and list 
   # and length of list to html page 
@@ -197,13 +197,13 @@ def getGoalies():
   url = f"http://{serviceName}:{servicePort}/db/get/goalieRoster"
 
   resp = https.request('GET', url)
-  print("Response Status = " + str(resp.status))
-  print("Response DATA = " + str(resp.data))
-  print("Response headers = " + str(resp.headers))
+  #print("Response Status = " + str(resp.status))
+  #print("Response DATA = " + str(resp.data))
+  #print("Response headers = " + str(resp.headers))
   
   json_html = json.loads(resp.data)
 
-  print(json_html)
+  #print(json_html)
 
   # returning index.html and list 
   # and length of list to html page 
@@ -215,13 +215,13 @@ def getForwards():
   url = f"http://{serviceName}:{servicePort}/db/get/forwardRoster"
 
   resp = https.request('GET', url)
-  print("Response Status = " + str(resp.status))
-  print("Response DATA = " + str(resp.data))
-  print("Response headers = " + str(resp.headers))
+  #print("Response Status = " + str(resp.status))
+  #print("Response DATA = " + str(resp.data))
+  #print("Response headers = " + str(resp.headers))
   
   json_html = json.loads(resp.data)
 
-  print(json_html)
+  #print(json_html)
 
   # returning index.html and list 
   # and length of list to html page 
@@ -233,13 +233,13 @@ def getDefense():
   url = f"http://{serviceName}:{servicePort}/db/get/defenseRoster"
 
   resp = https.request('GET', url)
-  print("Response Status = " + str(resp.status))
-  print("Response DATA = " + str(resp.data))
-  print("Response headers = " + str(resp.headers))
-  
+  #print("Response Status = " + str(resp.status))
+  #print("Response DATA = " + str(resp.data))
+  #print("Response headers = " + str(resp.headers))
+
   json_html = json.loads(resp.data)
 
-  print(json_html)
+  #print(json_html)
 
   # returning index.html and list 
   # and length of list to html page 
@@ -251,18 +251,18 @@ def getTeamRoster(team_id):
   url = f"http://{serviceName}:{servicePort}/db/get/teamName/team={team_id}"
 
   resp = https.request('GET', url)
-  print("Response Status = " + str(resp.status))
-  print("Response DATA = " + str(resp.data))
-  print("Response headers = " + str(resp.headers))
+  #print("Response Status = " + str(resp.status))
+  #print("Response DATA = " + str(resp.data))
+  #print("Response headers = " + str(resp.headers))
   teamName = resp.data.decode('utf-8')
 
  # Get Standings details
   url = f"http://{serviceName}:{servicePort}/db/get/teamStanding/team={teamName}"
 
   resp = https.request('GET', url)
-  print("Response Status = " + str(resp.status))
-  print("Response DATA = " + str(resp.data))
-  print("Response headers = " + str(resp.headers))
+  #print("Response Status = " + str(resp.status))
+  #print("Response DATA = " + str(resp.data))
+  #print("Response headers = " + str(resp.headers))
   
   standings_html = json.loads(resp.data)
 
@@ -271,9 +271,9 @@ def getTeamRoster(team_id):
   url = f"http://{serviceName}:{servicePort}/db/get/teamGoalieRoster/team={team_id}"
 
   resp = https.request('GET', url)
-  print("Response Status = " + str(resp.status))
-  print("Response DATA = " + str(resp.data))
-  print("Response headers = " + str(resp.headers))
+  #print("Response Status = " + str(resp.status))
+  #print("Response DATA = " + str(resp.data))
+  #print("Response headers = " + str(resp.headers))
   
   goalies_html = json.loads(resp.data)
 
@@ -281,9 +281,9 @@ def getTeamRoster(team_id):
   url = f"http://{serviceName}:{servicePort}/db/get/teamDefenseRoster/team={team_id}"
 
   resp = https.request('GET', url)
-  print("Response Status = " + str(resp.status))
-  print("Response DATA = " + str(resp.data))
-  print("Response headers = " + str(resp.headers))
+  #print("Response Status = " + str(resp.status))
+  #print("Response DATA = " + str(resp.data))
+  #print("Response headers = " + str(resp.headers))
   
   defenses_html = json.loads(resp.data)
   
@@ -291,9 +291,9 @@ def getTeamRoster(team_id):
   url = f"http://{serviceName}:{servicePort}/db/get/teamForwardRoster/team={team_id}"
 
   resp = https.request('GET', url)
-  print("Response Status = " + str(resp.status))
-  print("Response DATA = " + str(resp.data))
-  print("Response headers = " + str(resp.headers))
+  #print("Response Status = " + str(resp.status))
+  #print("Response DATA = " + str(resp.data))
+  #print("Response headers = " + str(resp.headers))
   forwards_html = json.loads(resp.data)
   
   # Implement this function
@@ -307,9 +307,9 @@ def getDateRoster():
     url = f"http://{serviceName}:{servicePort}/db/get/teamListByDate?gameDate={gmDate}"
 
     resp = https.request('GET', url)
-    print("Response Status = " + str(resp.status))
-    print("Response DATA = " + str(resp.data))
-    print("Response headers = " + str(resp.headers))
+    #print("Response Status = " + str(resp.status))
+    #print("Response DATA = " + str(resp.data))
+    #print("Response headers = " + str(resp.headers))
     
     teamResp = json.loads(resp.data)
     if not teamResp:
@@ -322,9 +322,9 @@ def getDateRoster():
     url = f"http://{serviceName}:{servicePort}/db/get/GoaliesByTeamList/teamList={teamList}"
 
     resp = https.request('GET', url)
-    print("Response Status = " + str(resp.status))
-    print("Response DATA = " + str(resp.data))
-    print("Response headers = " + str(resp.headers))
+    #print("Response Status = " + str(resp.status))
+    #print("Response DATA = " + str(resp.data))
+    #print("Response headers = " + str(resp.headers))
     
     goalies_html = json.loads(resp.data)
 
@@ -332,9 +332,9 @@ def getDateRoster():
     url = f"http://{serviceName}:{servicePort}/db/get/DefenseByTeamList/teamList={teamList}"
 
     resp = https.request('GET', url)
-    print("Response Status = " + str(resp.status))
-    print("Response DATA = " + str(resp.data))
-    print("Response headers = " + str(resp.headers))
+    #print("Response Status = " + str(resp.status))
+    #print("Response DATA = " + str(resp.data))
+    #print("Response headers = " + str(resp.headers))
     
     defenses_html = json.loads(resp.data)
     
@@ -342,9 +342,9 @@ def getDateRoster():
     url = f"http://{serviceName}:{servicePort}/db/get/ForwardsByTeamList/teamList={teamList}"
 
     resp = https.request('GET', url)
-    print("Response Status = " + str(resp.status))
-    print("Response DATA = " + str(resp.data))
-    print("Response headers = " + str(resp.headers))
+    #print("Response Status = " + str(resp.status))
+    #print("Response DATA = " + str(resp.data))
+    #print("Response headers = " + str(resp.headers))
     forwards_html = json.loads(resp.data)
     
     # Implement this function
@@ -356,16 +356,16 @@ def loadAllTeams():
   url = f"http://{serviceName}:{servicePort}/api/load/teams"
 
   resp = https.request('GET', url)
-  print("Response Status = " + str(resp.status))
-  print("Response DATA = " + str(resp.data))
-  print("Response headers = " + str(resp.headers))
+  #print("Response Status = " + str(resp.status))
+  #print("Response DATA = " + str(resp.data))
+  #print("Response headers = " + str(resp.headers))
   
   resp_message = resp.data.decode('utf-8')
 
-  print(resp_message)
+  #print(resp_message)
   ## display response message on curret html page
   message = f"Loaded {resp_message} from API"
-  print(message)
+  #print(message)
 
   # returning index.html and list
   # and length of list to html page
@@ -377,16 +377,16 @@ def loadAllGames():
   url = f"http://{serviceName}:{servicePort}/api/load/games"
 
   resp = https.request('GET', url)
-  print("Response Status = " + str(resp.status))
-  print("Response DATA = " + str(resp.data))
-  print("Response headers = " + str(resp.headers))
+  #print("Response Status = " + str(resp.status))
+  #print("Response DATA = " + str(resp.data))
+  #print("Response headers = " + str(resp.headers))
   
   resp_message = resp.data.decode('utf-8')
 
-  print(resp_message)
+  #print(resp_message)
   ## display response message on curret html page
   message = f"Loaded {resp_message} from API"
-  print(message)
+  #print(message)
 
   # returning index.html and list
   # and length of list to html page
@@ -403,8 +403,8 @@ def updateDayRosters():
     url = f"http://{serviceName}:{servicePort}/api/load/roster/date={gmDate}"
 
     resp = https.request('POST', url)
-    print("Response Status = " + str(resp.status))
-    print("Response DATA = " + str(resp.data))
+    #print("Response Status = " + str(resp.status))
+    #print("Response DATA = " + str(resp.data))
     
     resp_message = resp.data.decode('utf-8')
     message = f"Loaded {resp_message} from API"
@@ -422,13 +422,35 @@ def updateDayGames():
     url = f"http://{serviceName}:{servicePort}/api/update/game/updateDate={gmDate}"
 
     resp = https.request('POST', url)
-    print("Response Status = " + str(resp.status))
-    print("Response DATA = " + str(resp.data))
+    #print("Response Status = " + str(resp.status))
+    #print("Response DATA = " + str(resp.data))
     
     resp_message = resp.data.decode('utf-8')
     message = f"Loaded {resp_message} from API"
 
     return render_template("loadUpdatesMenu.html", message=message)
+
+@app.route("/loadStandings")
+def loadStandings():
+
+  url = f"http://{serviceName}:{servicePort}/api/load/standings"
+
+  resp = https.request('GET', url)
+  #print("Response Status = " + str(resp.status))
+  #print("Response DATA = " + str(resp.data))
+  #print("Response headers = " + str(resp.headers))
+  
+  resp_message = resp.data.decode('utf-8')
+
+  #print(resp_message)
+  ## display response message on curret html page
+  message = f"Loaded {resp_message} from API"
+  #print(message)
+
+  # returning index.html and list
+  # and length of list to html page
+  return render_template("loadUpdatesMenu.html", message=message)
+
  
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
