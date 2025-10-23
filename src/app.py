@@ -15,8 +15,8 @@ logging.basicConfig(stream=sys.stdout,
     datefmt='%Y-%m-%d %H:%M:%S',
     level=logging.DEBUG)
 
-serviceName = 'localhost'
-##serviceName = 'hockey2025app-hockey-service'
+##serviceName = 'localhost'
+serviceName = 'hockey2025app-hockey-service'
 servicePort = 8085
 
 logging.info(f"Service URL and Port: {serviceName}:{servicePort}")
