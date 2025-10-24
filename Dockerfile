@@ -20,6 +20,9 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 # Copy the entire application code
 COPY . .
 
+# make shell scripts executable 
+RUN chmod +x ./src/*.sh
+
 # Expose the port your application will run on
 EXPOSE 8080
 
