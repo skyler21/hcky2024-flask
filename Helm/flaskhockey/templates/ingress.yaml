@@ -2,9 +2,18 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: "{{ .Chart.Name }}-ingress"
+  annotations:
+    # for the NGINX's nginx-ingress 
+    nginx.org/proxy-connect-timeout: 1200s
+    nginx.org/proxy-read-timeout: 1200s
+    nginx.org/proxy-send-timeout: 1200s
+    # for the default ingress-nginx
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "1200"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "1200"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "1200"
 spec:
   rules:
-    - host: openshift-hockeyflask
+    - host: hockeyflask.com
       http:
         paths:
           - path: /
