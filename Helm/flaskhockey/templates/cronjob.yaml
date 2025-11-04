@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: daily-script-runner
+spec:
+  schedule: "0 7 * * *" # Runs daily at 7 AM
+  timeZone: "America/New_York" # Specify EST timezone
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: script-container
+            image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            command: ["/bin/bash", "-c", "/app/src/dbload.sh"] # Or directly embed the script
+            # If you're not using a custom image, you can embed the script directly:
+            # command: ["/bin/bash", "-c", "echo 'Running my daily task at $(date)'; # Your commands here"]
+          restartPolicy: OnFailure
+  successfulJobsHistoryLimit: 3 # Retain last 3 successful jobs
+  failedJobsHistoryLimit: 1 # Retain last 1 failed job        
