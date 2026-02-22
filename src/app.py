@@ -374,7 +374,7 @@ def loadAllTeams():
 @app.route("/loadAllGames")
 def loadAllGames():
 
-  url = f"http://{serviceName}:{servicePort}/api/load/games"
+  url = f"http://{serviceName}:{servicePort}/api/load/games/season=20252026"
 
   resp = https.request('GET', url)
   #print("Response Status = " + str(resp.status))
