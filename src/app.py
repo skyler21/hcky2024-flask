@@ -430,6 +430,25 @@ def updateDayGames():
 
     return render_template("loadUpdatesMenu.html", message=message)
 
+@app.route("/loadDayGames", methods=["POST"])
+def loadDayGames():
+    gmDate = request.form.get('gameDate')  # Changed from request.form[] to request.form.get()
+    if not gmDate:
+        return render_template("loadUpdatesMenu.html", 
+                            message="Error: Date is required")
+ 
+    # update Game for gmDate
+    url = f"http://{serviceName}:{servicePort}/api/load/dayGames/gameDate={gmDate}"
+
+    resp = https.request('POST', url)
+    #print("Response Status = " + str(resp.status))
+    #print("Response DATA = " + str(resp.data))
+    
+    resp_message = resp.data.decode('utf-8')
+    message = f"Loaded {resp_message} from API"
+
+    return render_template("loadUpdatesMenu.html", message=message)
+
 @app.route("/loadStandings")
 def loadStandings():
 

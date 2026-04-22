@@ -61,6 +61,16 @@
             <button type="submit">Update Day Games</button>
         </form>
 
+          <form action="{{ url_for('loadDayGames') }}" method="POST">
+            <input type="date" 
+                   id="gameDate" 
+                   name="gameDate" 
+                   required 
+                   pattern="\d{4}-\d{2}-\d{2}"
+                   title="Enter date in YYYY-MM-DD format">
+            <button type="submit">Load New Day Games</button>
+        </form>
+
         <p style="color:green;">{{ message }}</p>
     </div>
 </body>
