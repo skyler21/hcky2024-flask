@@ -13,7 +13,7 @@ import json
 logging.basicConfig(stream=sys.stdout, 
     format='%(asctime)s|%(levelname)s|%(thread)s|%(message)s',
     datefmt='%Y-%m-%d %H:%M:%S',
-    level=logging.DEBUG)
+    level=logging.INFO)
 
 ##serviceName = 'localhost'
 serviceName = 'hockey2025app-hockey-service'
@@ -89,7 +89,7 @@ def findGames():
   # and length of list to html page 
   return render_template("games.html", len = len(json_html), json_html = json_html) 
 
-  app.run(use_reloader = True, debug = True) 
+  app.run(use_reloader = True, debug = False) 
 
 @app.route("/getGamesMenu")
 def getGamesMenu():
@@ -122,7 +122,7 @@ def getGamesMenu():
   
   return render_template("gamesMenu.html", gameSeasons=gameSeasons, gameTypes=gameTypes, gameTeams=gameTeams) 
   
-  app.run(use_reloader = True, debug = True) 
+  app.run(use_reloader = True, debug = False) 
 
 @app.route("/getStandings")
 def getStandings():
@@ -167,7 +167,7 @@ def getTeamsMenu():
   # and length of list to html page 
   return render_template("teamsMenu.html") 
   
-  app.run(use_reloader = True, debug = True) 
+  app.run(use_reloader = True, debug = False) 
 
 @app.route("/getStandingsMenu")
 def getStandingsMenu():
@@ -374,7 +374,7 @@ def loadAllTeams():
 @app.route("/loadAllGames")
 def loadAllGames():
 
-  url = f"http://{serviceName}:{servicePort}/api/load/games/season=20252026"
+  url = f"http://{serviceName}:{servicePort}/api/load/games/season=20262027"
 
   resp = https.request('GET', url)
   #print("Response Status = " + str(resp.status))

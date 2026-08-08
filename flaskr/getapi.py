@@ -45,7 +45,7 @@ def getTeams():
   # if __name__ == '__main__': 
   # running app 
 
-  app.run(use_reloader = True, debug = True) 
+  app.run(use_reloader = True, debug = False) 
 
 
 @bp.route("/getGamesForDate")
@@ -68,5 +68,5 @@ def getGames(rtnDate):
   # if __name__ == '__main__': 
   # running app 
 
-  app.run(use_reloader = True, debug = True) 
+  app.run(use_reloader = True, debug = False) 
 
