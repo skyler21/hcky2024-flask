@@ -1,167 +1,220 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title> {{ teamName }} Team Roster</title> 
-</head>
-  <!-- Adding some style to table (OPTIONAL) -->
-<style type="text/css"> 
-      
-    th:tr{ 
-        color: blue; 
-  
-    } 
-    tr:nth-of-type(2n){ 
-        border: 1px solid black; 
-        background-color: rgba(150, 150, 150, 0.5); 
-  
-    } 
-  
-    td{ 
-        padding: 8px 8px; 
-        border: 1px solid black; 
-    } 
-</style> 
-  
-<body> 
-<h1>{{ teamName }} Team Roster</h1>
-<h3>Overall Points= {{ standings.points }}   Wins= {{ standings.wins }}   Losses= {{ standings.losses }}   Overtime Losses= {{ standings.otLosses }}</h3>
-<h3>Home Points= {{ standings.homePoints }}   Wins= {{ standings.homeWins }}   Losses= {{ standings.homeLosses }}   Overtime Losses= {{ standings.homeOtLosses }}</h3>
-<h3>Visitor Points= {{ standings.roadPoints }}   Wins= {{ standings.roadWins }}   Losses= {{ standings.roadLosses }}   Overtime Losses= {{ standings.roadOtLosses }}</h3>
-<!-- Table 1: Goalie Info -->
-<h2>Goalie Info</h2>
-<table style="margin-left: 20px;"> 
-<!-- Table headers -->
-    <th> 
-        <tr style="color: green; ">     
-        <td>Goals Against Avg</td> 
-        <td>Games Played</td>
-        <td>Wins</td>
-        <td>Losses</td>
-        <td>OT Losses</td>
-        <td>First Name</td>
-        <td>Last Name</td>
-        <td>Team</td> 
-        <td>Is Active</td> 
-        <td>Roster ID</td>
-        <td>Games Played</td>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ teamName }} Team Roster</title>
+    <style type="text/css">
+      body {
+        font-family: Arial, sans-serif;
+      }
 
-</tr> 
-    </th> 
-      
-<!-- For loop logic of jinja template -->
-{%for i in range(0, goalies_len)%} 
+      table {
+        margin-left: 20px;
+        border-collapse: collapse;
+      }
 
-<!-- table rows -->
-<tr> 
-    <td>{{goalies[i].goalsAgainstAvg}}</td> 
-    <td>{{goalies[i].gamesPlayed}}</td>
-    <td>{{goalies[i].gameWins}}</td>
-    <td>{{goalies[i].gameLosses}}</td> 
-    <td>{{goalies[i].gameOtLosses}}</td> 
-    <td>{{goalies[i].firstName}}</td>
-    <td>{{goalies[i].lastName}}</td> 
-    <td>{{goalies[i].teamAbbr}}</td> 
-    <td>{{goalies[i].isActive}}</td>
-    <td>{{goalies[i].rosterId}}</td> 
-    <td>{{goalies[i].gamesPlayed}}</td> 
-  
+      th {
+        color: green;
+      }
 
-{%endfor%} 
-  
-</tr> 
-</table>   
+      th,
+      td {
+        padding: 8px 8px;
+        border: 1px solid black;
+        text-align: left;
+      }
 
-<!-- Table 2: Forward Info -->
-<h2>Defense Info</h2>
-  
-    <table style="margin-left: 20px;"> 
-<!-- Table headers -->
-    <th> 
-        <tr style="color: green; ">     
-        <td>Points</td> 
-        <td>Goals</td>
-        <td>Assists</td>
-        <td>OT Goals</td>
-        <td>Plus Minus</td>
-        <td>Shots</td>
-        <td>First Name</td>
-        <td>Last Name</td>
-        <td>Team</td>
-        <td>Is Active</td>  
-        <td>Roster ID</td>
-        <td>Games Played</td>
+      tr:nth-of-type(2n) {
+        background-color: rgba(150, 150, 150, 0.5);
+      }
+    </style>
+  </head>
 
-</tr> 
-    </th> 
-      
-<!-- For loop logic of jinja template -->
-{%for i in range(0, defenses_len)%} 
+  <body>
+    <h1>{{ teamName }} Team Roster</h1>
 
-<!-- table rows -->
-<tr> 
-    <td>{{defenses[i].gamePoints}}</td> 
-    <td>{{defenses[i].gameGoals}}</td>
-    <td>{{defenses[i].gamesAssists}}</td>
-    <td>{{defenses[i].gameOtGoals}}</td>
-    <td>{{defenses[i].gamePlusMinus}}</td> 
-    <td>{{defenses[i].gameShots}}</td> 
-    <td>{{defenses[i].firstName}}</td>
-    <td>{{defenses[i].lastName}}</td> 
-    <td>{{defenses[i].teamAbbr}}</td> 
-    <td>{{defenses[i].isActive}}</td>
-    <td>{{defenses[i].rosterId}}</td> 
-    <td>{{defenses[i].gamesPlayed}}</td> 
+    <h3>
+      Overall Points = {{ standings.points }} &nbsp; Wins = {{ standings.wins }}
+      &nbsp; Losses = {{ standings.losses }} &nbsp; Overtime Losses = {{ standings.otLosses }}
+    </h3>
+    <h3>
+      Home Points = {{ standings.homePoints }} &nbsp; Wins = {{ standings.homeWins }}
+      &nbsp; Losses = {{ standings.homeLosses }} &nbsp; Overtime Losses = {{ standings.homeOtLosses }}
+    </h3>
+    <h3>
+      Visitor Points = {{ standings.roadPoints }} &nbsp; Wins = {{ standings.roadWins }}
+      &nbsp; Losses = {{ standings.roadLosses }} &nbsp; Overtime Losses = {{ standings.roadOtLosses }}
+    </h3>
 
-{%endfor%} 
-  
-</tr> 
-  
-</table> 
-  
-<!-- Table 3: Forward Info -->
-<h2>Forward Info</h2>
-<table style="margin-left: 20px;"> 
-<!-- Table headers -->
-    <th> 
-        <tr style="color: green; ">     
-        <td>Points</td> 
-        <td>Goals</td>
-        <td>Assists</td>
-        <td>OT Goals</td>
-        <td>Plus Minus</td>
-        <td>Shots</td>
-        <td>First Name</td>
-        <td>Last Name</td>
-        <td>Team</td>
-        <td>Is Active</td>
-        <td>Roster ID</td>
-        <td>Games Played</td>
+    <h2>Standings</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Conference<br />Name</th>
+          <th>Division<br />Name</th>
+          <th>Team<br />Name</th>
+          <th>Games<br />Played</th>
+          <th>Points</th>
+          <th>Win<br />Percentage</th>
+          <th>Wins</th>
+          <th>Losses</th>
+          <th>OT<br />Losses</th>
+          <th>Shootout<br />Wins</th>
+          <th>Shootout<br />Losses</th>
+          <th>Goals<br />For</th>
+          <th>Goal<br />Against</th>
+          <th>Home Gms<br />Played</th>
+          <th>Home<br />Points</th>
+          <th>Home<br />Wins</th>
+          <th>Home<br />Losses</th>
+          <th>Home OT<br />Losses</th>
+          <th>Road Gms<br />Played</th>
+          <th>Road<br />Points</th>
+          <th>Road<br />Wins</th>
+          <th>Road<br />Losses</th>
+          <th>Road OT<br />Losses</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ standings.conferenceName }}</td>
+          <td>{{ standings.divisionName }}</td>
+          <td>{{ standings.teamName }}</td>
+          <td>{{ standings.gamesPlayed }}</td>
+          <td>{{ standings.points }}</td>
+          <td>{{ standings.winPctg }}</td>
+          <td>{{ standings.wins }}</td>
+          <td>{{ standings.losses }}</td>
+          <td>{{ standings.otLosses }}</td>
+          <td>{{ standings.shootoutWins }}</td>
+          <td>{{ standings.shootoutLosses }}</td>
+          <td>{{ standings.goalFor }}</td>
+          <td>{{ standings.goalAgainst }}</td>
+          <td>{{ standings.homeGamesPlayed }}</td>
+          <td>{{ standings.homePoints }}</td>
+          <td>{{ standings.homeWins }}</td>
+          <td>{{ standings.homeLosses }}</td>
+          <td>{{ standings.homeOtLosses }}</td>
+          <td>{{ standings.roadGamesPlayed }}</td>
+          <td>{{ standings.roadPoints }}</td>
+          <td>{{ standings.roadWins }}</td>
+          <td>{{ standings.roadLosses }}</td>
+          <td>{{ standings.roadOtLosses }}</td>
+        </tr>
+      </tbody>
+    </table>
 
-</tr> 
-    </th> 
-      
-<!-- For loop logic of jinja template -->
-{%for i in range(0, forwards_len)%} 
-  
-<!-- table rows -->
-<tr> 
-    <td>{{forwards[i].gamePoints}}</td> 
-    <td>{{forwards[i].gameGoals}}</td>
-    <td>{{forwards[i].gamesAssists}}</td>
-    <td>{{forwards[i].gameOtGoals}}</td>
-    <td>{{forwards[i].gamePlusMinus}}</td> 
-    <td>{{forwards[i].gameShots}}</td> 
-    <td>{{forwards[i].firstName}}</td>
-    <td>{{forwards[i].lastName}}</td> 
-    <td>{{forwards[i].teamAbbr}}</td>
-    <td>{{forwards[i].isActive}}</td>
-    <td>{{forwards[i].rosterId}}</td> 
-    <td>{{forwards[i].gamesPlayed}}</td>    
+    <h2>Goalie Info</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Goals Against Avg</th>
+          <th>Games Played</th>
+          <th>Wins</th>
+          <th>Losses</th>
+          <th>OT Losses</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Team</th>
+          <th>Is Active</th>
+          <th>Roster ID</th>
+          <th>Games Played</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in range(0, goalies_len) %}
+        <tr>
+          <td>{{ goalies[i].goalsAgainstAvg }}</td>
+          <td>{{ goalies[i].gamesPlayed }}</td>
+          <td>{{ goalies[i].gameWins }}</td>
+          <td>{{ goalies[i].gameLosses }}</td>
+          <td>{{ goalies[i].gameOtLosses }}</td>
+          <td>{{ goalies[i].firstName }}</td>
+          <td>{{ goalies[i].lastName }}</td>
+          <td>{{ goalies[i].teamAbbr }}</td>
+          <td>{{ goalies[i].isActive }}</td>
+          <td>{{ goalies[i].rosterId }}</td>
+          <td>{{ goalies[i].gamesPlayed }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 
-{%endfor%} 
-  
-</tr> 
-  
-</table> 
-</body>
+    <h2>Defense Info</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Points</th>
+          <th>Goals</th>
+          <th>Assists</th>
+          <th>OT Goals</th>
+          <th>Plus Minus</th>
+          <th>Shots</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Team</th>
+          <th>Is Active</th>
+          <th>Roster ID</th>
+          <th>Games Played</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in range(0, defenses_len) %}
+        <tr>
+          <td>{{ defenses[i].gamePoints }}</td>
+          <td>{{ defenses[i].gameGoals }}</td>
+          <td>{{ defenses[i].gamesAssists }}</td>
+          <td>{{ defenses[i].gameOtGoals }}</td>
+          <td>{{ defenses[i].gamePlusMinus }}</td>
+          <td>{{ defenses[i].gameShots }}</td>
+          <td>{{ defenses[i].firstName }}</td>
+          <td>{{ defenses[i].lastName }}</td>
+          <td>{{ defenses[i].teamAbbr }}</td>
+          <td>{{ defenses[i].isActive }}</td>
+          <td>{{ defenses[i].rosterId }}</td>
+          <td>{{ defenses[i].gamesPlayed }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h2>Forward Info</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Points</th>
+          <th>Goals</th>
+          <th>Assists</th>
+          <th>OT Goals</th>
+          <th>Plus Minus</th>
+          <th>Shots</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Team</th>
+          <th>Is Active</th>
+          <th>Roster ID</th>
+          <th>Games Played</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in range(0, forwards_len) %}
+        <tr>
+          <td>{{ forwards[i].gamePoints }}</td>
+          <td>{{ forwards[i].gameGoals }}</td>
+          <td>{{ forwards[i].gamesAssists }}</td>
+          <td>{{ forwards[i].gameOtGoals }}</td>
+          <td>{{ forwards[i].gamePlusMinus }}</td>
+          <td>{{ forwards[i].gameShots }}</td>
+          <td>{{ forwards[i].firstName }}</td>
+          <td>{{ forwards[i].lastName }}</td>
+          <td>{{ forwards[i].teamAbbr }}</td>
+          <td>{{ forwards[i].isActive }}</td>
+          <td>{{ forwards[i].rosterId }}</td>
+          <td>{{ forwards[i].gamesPlayed }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
 </html>
