@@ -140,6 +140,8 @@ def findPredict():
 
   resp = https.request("GET", url)
   predictions = json.loads(resp.data)
+  if isinstance(predictions, dict):
+    predictions = [predictions]
 
   return render_template(
       "predictMenu.html",

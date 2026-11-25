@@ -40,9 +40,9 @@
         </tr>
         {% for prediction in predictions %}
         <tr>
-            <td>{{ prediction.gameNumber }}</td>
-            <td>{{ prediction.homeTeamFullName }}</td>
-            <td>{{ prediction.visitingTeamFullName }}</td>
+            <td>{{ prediction.game.gameNumber }}</td>
+            <td>{{ prediction.game.homeTeamFullName }}</td>
+            <td>{{ prediction.game.visitingTeamFullName }}</td>
             <td>{{ prediction.predictedWinner }}</td>
             <td>{{ prediction.homePointPctg }}</td>
             <td>{{ prediction.visitingPointPctg }}</td>
