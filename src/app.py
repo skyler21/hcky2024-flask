@@ -7,6 +7,7 @@ from flask import request
 import http.client
 import urllib3
 import json
+from urllib.parse import urlencode
 #import jsonify
 
 
@@ -123,6 +124,28 @@ def getGamesMenu():
   return render_template("gamesMenu.html", gameSeasons=gameSeasons, gameTypes=gameTypes, gameTeams=gameTeams) 
   
   app.run(use_reloader = True, debug = False) 
+
+@app.route("/getPredictMenu")
+def getPredictMenu():
+  return render_template("predictMenu.html", predictions=[], gameDate="")
+
+@app.route("/findPredict")
+def findPredict():
+  gameDate = request.args.get("gameDate")
+  if not gameDate:
+    return "Error: Date is required", 400
+
+  query = urlencode({"gameDate": gameDate})
+  url = f"http://{serviceName}:{servicePort}/db/get/predict?{query}"
+
+  resp = https.request("GET", url)
+  predictions = json.loads(resp.data)
+
+  return render_template(
+      "predictMenu.html",
+      predictions=predictions,
+      gameDate=gameDate,
+  )
 
 @app.route("/getStandings")
 def getStandings():
