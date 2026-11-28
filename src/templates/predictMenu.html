@@ -32,20 +32,20 @@
     <table style="margin-left: 20px;">
         <tr style="color: green;">
             <th>Game Number</th>
-            <th>Home Team</th>
             <th>Visiting Team</th>
-            <th>Predicted Winner</th>
-            <th>Home Point Percentage</th>
             <th>Visiting Point Percentage</th>
+            <th>Home Team</th>
+            <th>Home Point Percentage</th>
+            <th>Predicted Winner</th>                     
         </tr>
         {% for prediction in predictions %}
         <tr>
             <td>{{ prediction.game.gameNumber }}</td>
-            <td>{{ prediction.game.homeTeamFullName }}</td>
             <td>{{ prediction.game.visitingTeamFullName }}</td>
-            <td>{{ prediction.predictedWinner }}</td>
-            <td>{{ prediction.homePointPctg }}</td>
             <td>{{ prediction.visitingPointPctg }}</td>
+            <td>{{ prediction.game.homeTeamFullName }}</td>
+            <td>{{ prediction.homePointPctg }}</td> 
+            <td>{{ prediction.predictedWinner }}</td>
         </tr>
         {% endfor %}
     </table>
